@@ -26,7 +26,7 @@ function Chat({ user, signout }) {
         //     where('ReceiverID', '==', ""),
         // );
       
-        const unsub = onSnapshot(colletionRef, (querySnapshot) => {
+        const unsub = onSnapshot(query(colletionRef, orderBy("createdAt")), (querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push(doc.data());

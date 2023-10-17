@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { auth, db } from '../firebase'
-import {Button} from '@mui/material'
+import {Button, Card, Input} from '@mui/material'
 import { onAuthStateChanged } from 'firebase/auth'
 import { doc,
   onSnapshot,
@@ -14,9 +14,10 @@ import { doc,
   where,
   orderBy,
   limit } from 'firebase/firestore'
-import { v4 as uuidv4 } from 'uuid';
+import SendMessage from './SendMessage'
 
 function Chat({ user, signout }) {
+    const scroll = useRef()
     const [messages, setMessages] = useState([])
     const colletionRef = collection(db, 'messages');
     useEffect(() => {
@@ -54,14 +55,20 @@ function Chat({ user, signout }) {
   return (
       <>
           <div>Welcome, {username}</div>
-          <div>Messages</div>
+          <Button onClick={SignOut}>Sign out</Button>
+          <div className="msgs">
           {messages.map((message) => (
               <div>
-                  <div>{message.text}</div>
+                  <div key={message.id} className={`msg ${message.senderId === auth.currentUser.uid ? 'sent' : 'received'}`}>
+                            <img src={message.photoURL} alt="" />
+                            <p>{message.text}</p>
+                        </div>
               </div>
           ))}
+            </div>
           <div></div>
-          <Button onClick={SignOut}>Sign out</Button>
+            <SendMessage scroll={scroll} />
+            <div ref={scroll}></div>
       </>
   )
 }

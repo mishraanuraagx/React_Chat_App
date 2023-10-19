@@ -13,10 +13,9 @@ function SignIn({ updateHomePage}) {
             
     }
   return (
-        <>
-          <Button onClick={signInWithGoogle}>Sign In With Google</Button>
-          
-        </>
+        <p className='.signIn'>
+          <Button onClick={signInWithGoogle}>Sign In With Google</Button> 
+        </p>
     )
 }
 

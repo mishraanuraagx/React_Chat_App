@@ -1,19 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { auth, db } from '../firebase'
-import {Button, Card, Input} from '@mui/material'
-import { onAuthStateChanged } from 'firebase/auth'
-import { doc,
-  onSnapshot,
-  updateDoc,
-  setDoc,
-  deleteDoc,
-  collection,
-  serverTimestamp,
-  getDocs,
-  query,
-  where,
-  orderBy,
-  limit } from 'firebase/firestore'
+import {Button} from '@mui/material'
+import {onSnapshot, collection, query, orderBy ,} from 'firebase/firestore'
 import SendMessage from './SendMessage'
 
 function Chat({ user, signout }) {
@@ -44,24 +32,25 @@ function Chat({ user, signout }) {
     function SignOut() {
         auth.signOut().then(() => { signout()})
     }
-    var username, email, photoURL, userid
+    let username
+    // var email, photoURL, userid
     if (user) {
         username = user.displayName;
-        email = user.email
-        photoURL = user.photoURL
-        userid = user.uid
+        // email = user.email
+        // photoURL = user.photoURL
+        // userid = user.uid
     }
     
   return (
       <>
-          <div>Welcome, {username}</div>
-          <Button onClick={SignOut}>Sign out</Button>
+          {/* <div>Welcome, {username}</div>
+          <Button onClick={SignOut}>Sign out</Button> */}
           <div className="msgs">
           {messages.map((message) => (
-              <div>
+              <div key={message.id}>
                   <div key={message.id} className={`msg ${message.senderId === auth.currentUser.uid ? 'sent' : 'received'}`}>
                             <img src={message.photoURL} alt="" />
-                            <p>{message.text}</p>
+                      <p style={{ align: 'right' }}>{message.text}</p>
                         </div>
               </div>
           ))}

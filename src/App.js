@@ -17,15 +17,15 @@ function App() {
     setUser(auth.currentUser)
   }
 
-  function SignOut() {
-    auth.signOut().then(() => {setUser() })
-  }
+  // function SignOut() {
+  //   auth.signOut().then(() => {setUser() })
+  // }
 
 
   if (user) { console.log(user.displayName) }
   return (
-    <div className='app'>
-      {user ? <div> <Header userDetails={user} SingOut={SignOut} /> <Chat user={user} signout={ updateUser} /> </div> : <SignIn updateHomePage={updateUser} />}
+    <div>
+      {user ? <div> <Header userDetails={user} homePage={ updateUser} /> <Chat user={user} signout={ updateUser} /> </div> : <SignIn updateHomePage={updateUser} />}
       
     </div>
   );

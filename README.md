@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# ConverseLink
+![ConverseLink logo1](https://github.com/mishraanuraagx/React_Chat_App/assets/24863779/8886f88f-9692-43c2-87a5-c1c585550165)
+A real-time chat application using React and Firebase, enabling seamless conversations among all logged-in users.
+A live version with the latest developments is hosted at https://ashy-flower-04988a003.3.azurestaticapps.net. (may have bugs)
+
+# Getting Started with ConverseLink App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
